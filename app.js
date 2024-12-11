@@ -5,22 +5,16 @@ const session = require("express-session");
 const passport = require("passport");
 const cors = require("cors");
 
-// Custome Routers
 const userRrouter = require("./routes/userRouter");
 const authController = require("./controllers/authController");
 
 require("./passport-config")(passport);
 
-// EJS
 app.set("view engine", "ejs");
-
-// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cors());
-
-// Express Session
 app.use(
   session({
     secret: "secret",
@@ -31,11 +25,8 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Connect Flash
 app.use(flash());
 
-// Global Vars
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
