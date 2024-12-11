@@ -40,9 +40,4 @@ router.post("/login", (req, res, next) => {
 
 router.get("/logout", userController.logout);
 
-// router
-//   .route("/change-password")
-//   .get(userController.changePasswordPage)
-//   .post(userController.changePassword);
-
 module.exports = router;
