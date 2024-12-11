@@ -1,0 +1,27 @@
+<%- include("./includes/_header.ejs") %>
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-6 mx-auto">
+				<%- include("./partials/messages.ejs") %>
+					<h1 class="mb-5">Login</h1>
+					<form id="form" action="/users/login" method="POST">
+						<input class="form-control mb-2" name="username" type="text" autocomplete="off" id="username"
+							placeholder="Email" required />
+						<input class="form-control mb-2" type="password" autocomplete="off" id="password" placeholder="Password"
+							name="password" required />
+						<div class="mt-4 d-flex align-items-center justify-content-between w-100">
+							<button class="btn btn-primary px-5  d-flex align-items-center justify-content-between" type="submit"
+								id="btn">
+								<div>Login</div>
+								<div style="display: none; margin-left: 20px;" class="spinner-border spinner-border-sm" id="spinner"
+									role="status">
+									<span class="visually-hidden">Loading...</span>
+								</div>
+							</button>
+							<a href="/users/register">Don't have an account? Register</a>
+						</div>
+					</form>
+			</div>
+		</div>
+	</div>
+	<%- include("./includes/_footer.ejs") %>

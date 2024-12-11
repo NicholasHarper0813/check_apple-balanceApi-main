@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="container vh-100 d-flex align-items-center justify-content-center">
+    <h1 id="record">0</h1>
+    <div class="row flex-grow-1">
+      <div class="col-sm-1 col-md-2"></div>
+      <div class="col-md-8 col-sm-10 flex-grow-1">
+        <form>
+          <div class="form-floating">
+            <textarea class="form-control h-75" placeholder="Leave a comment here" id="cookieText" rows="10"></textarea>
+            <label for="cookieText">Comments</label>
+          </div>
+          <div class="mb-3">
+            <label for="file" class="form-label text-danger">Only choose *.xlsx file</label>
+            <input class="form-control" type="file" id="file" accept=".xlsx">
+          </div>
+          <button id="saveData" class="btn btn-primary mb-3">Save Data</button>
+          <button id="startFetch" class="btn btn-success mb-3">Start</button>
+        </form>
+      </div>
+      <div class="col-sm-1 col-md-2"></div>
+    </div>
+  </div>
+
+</body>
+<script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+
+<script>
+  const saveBtn = document.getElementById("saveData");
+  const startBtn = document.getElementById('startFetch')
+  const file = document.getElementById("file")
+  const record = document.getElementById("record");
+  const cookie = document.getElementById("cookieText");
+
+  const socket = io("ws://localhost:3000");
+
+  startBtn.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    let headers = (cookie.value.replace('fetch(', '').replace(")", '').replace("https://secure1.store.apple.com/shop/giftcard/balancex?_a=checkBalance&_m=giftCardBalanceCheck", '').replace(`\"\" ,`, ''));
+
+    headers = eval(headers);
+
+    console.log(headers);
+
+    socket.emit("start", {
+      name: "Muneeb Akram",
+      headers: headers,
+    });
+
+  })
+
+  socket.on("recordChecked", (data) => {
+    record.textContent = (record.textContent * 1) + 1;
+    console.log(data);
+  })
+
+</script>
+
+</html>

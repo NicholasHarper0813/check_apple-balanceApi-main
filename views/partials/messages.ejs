@@ -1,0 +1,30 @@
+<% if (error) { %>
+  <div class="
+  alert alert-danger">
+    <ul>
+      <% for( let i=0; i < error.length; i++ ) { %>
+        <li>
+          <%= error[i] %>
+        </li>
+        <% } %>
+    </ul>
+  </div>
+  <% } %>
+
+    <% if (typeof success_msg !='undefined' && success_msg !='' ) { %>
+      <div class="alert alert-success">
+        <%= success_msg %>
+      </div>
+      <% } %>
+
+        <% if (typeof error_msg !='undefined' && error_msg !='' ) { %>
+          <div class="alert alert-danger">
+            <%= error_msg %>
+          </div>
+          <% } %>
+
+            <% if (error !='' ) { %>
+              <div class="alert alert-danger">
+                <%= error %>
+              </div>
+              <% } %>

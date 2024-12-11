@@ -1,0 +1,45 @@
+<%- include("./includes/_header.ejs") %>
+  <div class="container mt-5">
+    <div id="error"></div>
+    <div class="row mb-4">
+      <div class="mx-auto col-md-8 d-flex align-items-center justify-content-between">
+        <h1>Dashboard</h1>
+        <a href="/users/logout" class="btn btn-secondary">Logout</a>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row mb-4">
+        <div class="col-md-8 col-sm-10 mx-auto">
+          <div class="d-flex align-items-center justify-content-between">
+            <h2>Total Gift Card Checked</h2>
+            <h1 id="record" class="fs-1">0</h1>
+          </div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" id="progress"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row flex-grow-1 mx-auto">
+      <div class="col-md-8 col-sm-10 mx-auto">
+        <form>
+          <div class="form-floating">
+            <textarea class="form-control h-75" placeholder="Leave a comment here" id="cookieText" rows="10"
+              required></textarea>
+            <label for="cookieText">Cookie Text</label>
+          </div>
+          <div class="mb-3">
+            <label for="file" class="form-label text-danger">Only choose *.xlsx file</label>
+            <input class="form-control" type="file" id="file" accept=".xlsx">
+          </div>
+          <!-- <button id="saveData" class="btn btn-primary mb-3">Save Data</button> -->
+          <button id="startFetch" class="btn btn-success mb-3">Start</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <%- include("./includes/_footer.ejs") %>
